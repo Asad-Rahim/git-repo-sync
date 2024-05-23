@@ -32,7 +32,8 @@ jobs:
           echo hi
           git remote add temp_repo /tmp/temp_repo
           echo hi2
-          git fetch temp_repo
+          ls ~
+          git fetch ~
           echo hi3
           git merge temp_repo/master --allow-unrelated-histories -m "Sync changes from git-repo-sync"
           echo hi4
