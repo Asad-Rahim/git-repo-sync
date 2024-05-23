@@ -25,6 +25,8 @@ jobs:
           cd /tmp
           git clone https://github.com/Asad-Rahim/git-scm.com-copy.git
       - name: Run Sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ls /tmp
           ls 
@@ -43,8 +45,7 @@ jobs:
           echo hi4
           git push origin sync-changes-${{ github.run_id }}
           echo hi5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
       - name: create PR
         run: gh pr create -B main -H sync-changes-${{ github.run_id }} --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
 
