@@ -31,11 +31,11 @@ jobs:
           cd /tmp/git-scm.com-copy
           git checkout -b  sync-changes-${{ github.run_id }}
           echo hi
-          git remote add temp_repo /tmp/temp_repo
+          git remote add src_repo /home/runner/work/git-repo-sync/git-repo-sync
           echo hi2
           git fetch /home/runner/work/git-repo-sync/git-repo-sync
           echo hi3
-          git merge temp_repo/master --allow-unrelated-histories -m "Sync changes from git-repo-sync"
+          git merge src_repo/master --allow-unrelated-histories -m "Sync changes from git-repo-sync"
           echo hi4
           git push origin sync-changes-${{ github.run_id }}
           echo hi5
