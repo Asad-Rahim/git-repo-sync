@@ -43,7 +43,7 @@ jobs:
           echo hi3
           git merge src_repo/master --allow-unrelated-histories -m "Sync changes from git-repo-sync"
           echo hi4
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/git-scm.com-copy
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/Asad-Rahim/git-scm.com-copy
           git push origin sync-changes-${{ github.run_id }}
           echo hi5
         
