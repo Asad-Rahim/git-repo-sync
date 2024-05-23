@@ -28,25 +28,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ls /tmp
-          ls 
           pwd
           cd ./.github
           python3 git-filter-repo --path README.md --path repo_settings/ --path util --force
-          cat ~/.git/filter-repo/ref-map | grep -E '[0]{40} refs/tags' | cut -w -f 3 | sed -e 's/refs\/tags\///' | xargs git tag -d
           cd /tmp/git-scm.com-copy
           git checkout -b  sync-changes-${{ github.run_id }}
-          echo hi
           git remote add src_repo /home/runner/work/git-repo-sync/git-repo-sync
-          echo hi2
           git fetch src_repo
-          echo hi3
           git merge src_repo/master --allow-unrelated-histories -m "Sync changes from git-repo-sync"
-          echo hi4
+          echo "trying to access add other repos remote"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/Asad-Rahim/git-scm.com-copy
-          git push origin sync-changes-${{ github.run_id }}
-          echo hi5
-        
+          echo "trying to push changes"
+          git push origin sync-changes-${{ github.run_id }}   
       - name: create PR
         run: gh pr create -B main -H sync-changes-${{ github.run_id }} --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
 
