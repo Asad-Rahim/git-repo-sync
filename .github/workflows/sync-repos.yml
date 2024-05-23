@@ -33,7 +33,7 @@ jobs:
           echo hi
           git remote add src_repo /home/runner/work/git-repo-sync/git-repo-sync
           echo hi2
-          git fetch /home/runner/work/git-repo-sync/git-repo-sync
+          git fetch src_repo
           echo hi3
           git merge src_repo/master --allow-unrelated-histories -m "Sync changes from git-repo-sync"
           echo hi4
